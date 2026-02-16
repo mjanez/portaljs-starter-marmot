@@ -1,5 +1,5 @@
 # ======================================
-# PortalJS MarmotData Starter
+# PortalJS Marmot Starter
 # Production Dockerfile
 # ======================================
 

@@ -1,9 +1,9 @@
 # =============================================================================
-# MarmotData + PortalJS Full Stack Docker Compose
+# Marmot + PortalJS Full Stack Docker Compose
 # =============================================================================
 # This file deploys the complete stack:
 # - PostgreSQL (Marmot database)
-# - MarmotData Server (API + UI at :8080)
+# - Marmot Server (API + UI at :8080)
 # - PortalJS Frontend (Data Catalog Portal at :3000)
 #
 # Usage:
@@ -54,7 +54,7 @@ services:
       retries: 5
 
   # ==========================================================================
-  # MarmotData Server
+  # Marmot Server
   # ==========================================================================
 
   marmot:

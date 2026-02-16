@@ -1,7 +1,7 @@
 {
     "name": "@portaljs/marmot-starter",
     "version": "1.0.0",
-    "description": "A modern, production-ready frontend template for MarmotData catalogs built with Next.js, React, and Tailwind CSS",
+    "description": "A modern, production-ready frontend template for Marmot catalogs built with Next.js, React, and Tailwind CSS",
     "author": "mjanez",
     "license": "MIT",
     "repository": {
@@ -15,7 +15,7 @@
     "keywords": [
         "portaljs",
         "marmot",
-        "marmotdata",
+        "marmot",
         "data-catalog",
         "nextjs",
         "react",

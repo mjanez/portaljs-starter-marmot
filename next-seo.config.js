@@ -1,9 +1,9 @@
 /* eslint-disable import/no-anonymous-default-export */
 
 export const siteTitle = "PortalJS Data Catalog";
-export const title = "PortalJS + MarmotData";
+export const title = "PortalJS + Marmot";
 export const description =
-    "Discover all your data assets – tables, topics, queues, buckets and more. An open data catalog powered by MarmotData and PortalJS.";
+    "Discover all your data assets – tables, topics, queues, buckets and more. An open data catalog powered by Marmot and PortalJS.";
 
 export const url = "https://portaljs-starter-marmot.vercel.app";
 export const imageUrl = `${url}/images/portaljs-marmot.png`;
@@ -38,7 +38,7 @@ export default {
     additionalMetaTags: [
         {
             name: "keywords",
-            content: "PortalJS, MarmotData, data catalog, data assets, data portal, open source, frontend template",
+            content: "PortalJS, Marmot, data catalog, data assets, data portal, open source, frontend template",
         },
         {
             name: "author",
