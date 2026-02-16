@@ -23,8 +23,9 @@ export default async function handler(
             const data = terms.map((term: any) => ({
                 ...term,
                 displayName: term.name,
+                description: term.definition || term.description || "",
                 fullyQualifiedName: term.id, // Use ID as FQN
-                childrenCount: term.child_count ?? (term.has_children ? 1 : 0), // Use heuristic if count not available
+                childrenCount: term.child_count ?? term.children_count ?? 0,
                 children: [], // Initially empty, will be populated on expand
             }));
 

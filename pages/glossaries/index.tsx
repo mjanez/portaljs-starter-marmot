@@ -51,7 +51,7 @@ export default function Page({ glossaries }) {
                                                         ></p>
                                                     )}
                                                     <div>
-                                                        <TermsList path={g.name} />
+                                                        <TermsList path={g.id} />
                                                     </div>
                                                 </Disclosure.Panel>
                                             </>

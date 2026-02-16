@@ -128,7 +128,7 @@ export async function getChildTerms({ id }: { id: string }) {
             return [];
         }
         const data = await res.json();
-        return data.terms || data || [];
+        return data.children || data.terms || data || [];
     } catch (error) {
         console.error("getChildTerms exception:", error);
         return [];

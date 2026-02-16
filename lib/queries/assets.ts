@@ -45,7 +45,7 @@ export async function searchAssets(options: PackageSearchOptions) {
 
     // Provider / service filters (maps to OMD "orgs")
     if (options?.orgs?.length) {
-        queryParams.push(`services=${options.orgs.join(",")}`);
+        queryParams.push(`providers=${options.orgs.join(",")}`);
     }
 
     // Tag filters

@@ -26,8 +26,8 @@ export async function getAllProviders(): Promise<Organization[]> {
         }
         const data = await res.json();
 
-        // data.services is a map of { "postgres": 12, "kafka": 5, ... }
-        const services: Record<string, number> = data.services || {};
+        // data.providers is a map of { "PostgreSQL": 7, "Kafka": 3, ... }
+        const services: Record<string, number> = data.providers || {};
 
         return Object.entries(services).map(([name, count]) =>
             providerToOrg(name, count as number)
