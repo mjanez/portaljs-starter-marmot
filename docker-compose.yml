@@ -1,0 +1,124 @@
+# =============================================================================
+# MarmotData + PortalJS Full Stack Docker Compose
+# =============================================================================
+# This file deploys the complete stack:
+# - PostgreSQL (Marmot database)
+# - MarmotData Server (API + UI at :8080)
+# - PortalJS Frontend (Data Catalog Portal at :3000)
+#
+# Usage:
+#   1. Copy .env.example to .env and configure
+#   2. Run: docker compose up -d
+#   3. Wait for services to be healthy (~1 minute)
+#   4. Create an API key: ./scripts/00_init-api-key.sh
+#   5. Access:
+#      - Marmot:   http://localhost:8080 (admin/admin)
+#      - PortalJS: http://localhost:3000
+# =============================================================================
+
+volumes:
+  marmot_data:
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.240.0/24"
+
+services:
+  # ==========================================================================
+  # Database
+  # ==========================================================================
+
+  postgres:
+    container_name: marmot_postgresql
+    image: postgres:16-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: marmot
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marmot}
+      POSTGRES_DB: marmot
+    volumes:
+      - marmot_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    ports:
+      - "5433:5432"
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U marmot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # ==========================================================================
+  # MarmotData Server
+  # ==========================================================================
+
+  marmot:
+    container_name: marmot_server
+    image: ghcr.io/marmotdata/marmot:latest
+    restart: always
+    environment:
+      MARMOT_DATABASE_HOST: postgres
+      MARMOT_DATABASE_PORT: 5432
+      MARMOT_DATABASE_USER: marmot
+      MARMOT_DATABASE_PASSWORD: ${POSTGRES_PASSWORD:-marmot}
+      MARMOT_DATABASE_NAME: marmot
+      MARMOT_DATABASE_SSLMODE: disable
+      MARMOT_SERVER_ALLOW_UNENCRYPTED: ${MARMOT_ALLOW_UNENCRYPTED:-true}
+      MARMOT_SERVER_ENCRYPTION_KEY: ${MARMOT_ENCRYPTION_KEY:-}
+      MARMOT_LOGGING_LEVEL: ${MARMOT_LOGGING_LEVEL:-info}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - 8080
+    ports:
+      - "8080:8080"
+    networks:
+      - app_net
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 30s
+
+  # ==========================================================================
+  # PortalJS Frontend
+  # ==========================================================================
+
+  portaljs:
+    container_name: portaljs_frontend
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_DMS: http://marmot:8080
+        DMS_API_KEY: ${DMS_API_KEY:-}
+        NEXT_PUBLIC_THEME_COLOR: ${NEXT_PUBLIC_THEME_COLOR:-#4977AB}
+    restart: always
+    environment:
+      # Runtime environment variables
+      # Server-side (SSR) uses this to reach Marmot via Docker network
+      NEXT_PUBLIC_DMS: http://marmot:8080
+      DMS_API_KEY: ${DMS_API_KEY:-}
+      NODE_ENV: production
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - app_net
+    depends_on:
+      marmot:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
