@@ -1,0 +1,81 @@
+{
+    "_comment": "Glossary terms organized by category. Children reference their parent by 'parent' key (matched by name). Order matters: parents must appear before children.",
+    "terms": [
+        {
+            "name": "Data Governance",
+            "definition": "The framework for managing data availability, usability, integrity, and security within an organization."
+        },
+        {
+            "name": "Personal Identifiable Information (PII)",
+            "definition": "Any data that can be used to identify a specific individual, including name, email, address, phone number, and government IDs.",
+            "parent": "Data Governance"
+        },
+        {
+            "name": "GDPR Compliance",
+            "definition": "Adherence to the General Data Protection Regulation, the EU law on data protection and privacy.",
+            "parent": "Data Governance"
+        },
+        {
+            "name": "Data Retention Policy",
+            "definition": "Rules defining how long data should be kept before being archived or deleted.",
+            "parent": "Data Governance"
+        },
+        {
+            "name": "Data Architecture",
+            "definition": "The structural design of data systems, including models, policies, and standards governing data collection, storage, and use."
+        },
+        {
+            "name": "Event Streaming",
+            "definition": "A data integration pattern where events are published to a stream and consumed by one or more subscribers in real-time.",
+            "parent": "Data Architecture"
+        },
+        {
+            "name": "Data Lake",
+            "definition": "A centralized repository that stores raw data in its native format until it is needed for analytics.",
+            "parent": "Data Architecture"
+        },
+        {
+            "name": "Data Lineage",
+            "definition": "The tracking of data from its origin through all transformations, movements, and consumption points.",
+            "parent": "Data Architecture"
+        },
+        {
+            "name": "Business Intelligence",
+            "definition": "Tools and strategies for analyzing business data to support decision-making."
+        },
+        {
+            "name": "KPI - Key Performance Indicator",
+            "definition": "A measurable value that demonstrates how effectively an organization is achieving key business objectives.",
+            "parent": "Business Intelligence"
+        },
+        {
+            "name": "Revenue Analytics",
+            "definition": "The analysis of income data to identify trends, forecast earnings, and optimize pricing strategies.",
+            "parent": "Business Intelligence"
+        },
+        {
+            "name": "Customer Segmentation",
+            "definition": "The process of dividing customers into groups based on shared characteristics like demographics, behavior, or purchase history.",
+            "parent": "Business Intelligence"
+        },
+        {
+            "name": "Data Quality",
+            "definition": "The degree to which data meets the requirements of its intended use in terms of accuracy, completeness, and consistency."
+        },
+        {
+            "name": "Data Completeness",
+            "definition": "A measure of whether all required data fields are populated and no expected records are missing.",
+            "parent": "Data Quality"
+        },
+        {
+            "name": "Data Freshness",
+            "definition": "A measure of how up-to-date data is relative to real-world events it represents.",
+            "parent": "Data Quality"
+        },
+        {
+            "name": "Data Accuracy",
+            "definition": "The degree to which data correctly describes the real-world entity or event it represents.",
+            "parent": "Data Quality"
+        }
+    ]
+}

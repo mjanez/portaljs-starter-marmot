@@ -1,0 +1,20 @@
+{
+    "_comment": "Links glossary terms to assets. Keys are asset names; values are arrays of glossary term names.",
+    "links": {
+        "customers": [
+            "Personal Identifiable Information (PII)",
+            "GDPR Compliance"
+        ],
+        "orders": [
+            "Revenue Analytics"
+        ],
+        "customer_360": [
+            "Customer Segmentation",
+            "Data Lineage"
+        ],
+        "monthly_revenue_report": [
+            "KPI - Key Performance Indicator",
+            "Revenue Analytics"
+        ]
+    }
+}
