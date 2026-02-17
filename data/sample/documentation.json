@@ -1,0 +1,12 @@
+[
+    {
+        "asset_mrn": "mrn://table/postgresql/customers",
+        "content": "# Customers Table\n\n## Overview\nThe customers table is the primary source of truth for customer identity and contact information.\n\n## Data Quality\n- Email uniqueness is enforced at the database level\n- Phone numbers are validated via application logic\n- GDPR compliance: PII fields are encrypted at rest\n\n## Usage Guidelines\n- Always use `customer_id` for joins (never email)\n- Filter by `is_active = true` for current customers\n- Date of birth should only be accessed by authorized teams",
+        "type": "markdown"
+    },
+    {
+        "asset_mrn": "mrn://table/postgresql/orders",
+        "content": "# Orders Table\n\n## Overview\nCentral table for all purchase transactions.\n\n## Statuses\n- `pending` - Order created, payment not processed\n- `paid` - Payment confirmed\n- `shipped` - Handed to carrier\n- `delivered` - Confirmed delivery\n- `cancelled` - Order cancelled\n\n## Notes\n- `total_amount` is in the currency specified by `currency` field\n- Refunds create a new negative-amount order linked via `parent_order_id`",
+        "type": "markdown"
+    }
+]

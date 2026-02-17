@@ -1,0 +1,329 @@
+[
+    {
+        "name": "customers",
+        "type": "table",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Core customer data including demographics, contact information, and account status.",
+        "tags": [
+            "pii",
+            "core",
+            "gdpr"
+        ],
+        "schema": {
+            "customer_id": "integer",
+            "first_name": "varchar(100)",
+            "last_name": "varchar(100)",
+            "email": "varchar(255)",
+            "phone": "varchar(20)",
+            "date_of_birth": "date",
+            "created_at": "timestamp",
+            "updated_at": "timestamp",
+            "is_active": "boolean"
+        },
+        "metadata": {
+            "database": "production",
+            "schema_name": "public",
+            "row_count": 125000,
+            "size_mb": 45.2,
+            "owner": "data-engineering"
+        }
+    },
+    {
+        "name": "orders",
+        "type": "table",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Order transactions with product references, quantities, and payment status.",
+        "tags": [
+            "transactions",
+            "core",
+            "finance"
+        ],
+        "schema": {
+            "order_id": "integer",
+            "customer_id": "integer",
+            "order_date": "timestamp",
+            "total_amount": "decimal(10,2)",
+            "currency": "varchar(3)",
+            "status": "varchar(20)",
+            "shipping_address_id": "integer"
+        },
+        "metadata": {
+            "database": "production",
+            "schema_name": "public",
+            "row_count": 890000,
+            "size_mb": 312.7,
+            "owner": "data-engineering"
+        }
+    },
+    {
+        "name": "products",
+        "type": "table",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Product catalog with categories, pricing, and inventory levels.",
+        "tags": [
+            "catalog",
+            "core"
+        ],
+        "schema": {
+            "product_id": "integer",
+            "name": "varchar(200)",
+            "description": "text",
+            "category": "varchar(100)",
+            "price": "decimal(10,2)",
+            "stock_quantity": "integer",
+            "sku": "varchar(50)"
+        },
+        "metadata": {
+            "database": "production",
+            "schema_name": "public",
+            "row_count": 4500,
+            "size_mb": 2.1,
+            "owner": "product-team"
+        }
+    },
+    {
+        "name": "order_events",
+        "type": "topic",
+        "providers": [
+            "Kafka"
+        ],
+        "description": "Real-time stream of order lifecycle events (created, paid, shipped, delivered, cancelled).",
+        "tags": [
+            "streaming",
+            "events",
+            "orders"
+        ],
+        "schema": {
+            "event_id": "string",
+            "order_id": "integer",
+            "event_type": "string",
+            "timestamp": "string",
+            "payload": "json"
+        },
+        "metadata": {
+            "cluster": "prod-kafka-01",
+            "partitions": 12,
+            "replication_factor": 3,
+            "retention_ms": 604800000,
+            "avg_messages_per_sec": 250
+        }
+    },
+    {
+        "name": "clickstream_events",
+        "type": "topic",
+        "providers": [
+            "Kafka"
+        ],
+        "description": "User interaction events from the web and mobile applications.",
+        "tags": [
+            "streaming",
+            "analytics",
+            "user-behavior"
+        ],
+        "schema": {
+            "session_id": "string",
+            "user_id": "string",
+            "page_url": "string",
+            "action": "string",
+            "timestamp": "string",
+            "device_type": "string"
+        },
+        "metadata": {
+            "cluster": "prod-kafka-01",
+            "partitions": 24,
+            "replication_factor": 3,
+            "retention_ms": 259200000,
+            "avg_messages_per_sec": 1500
+        }
+    },
+    {
+        "name": "raw-data/daily-exports/",
+        "type": "bucket",
+        "providers": [
+            "S3"
+        ],
+        "description": "Daily CSV exports of transactional data for offline analytics and backup.",
+        "tags": [
+            "raw",
+            "export",
+            "backup"
+        ],
+        "metadata": {
+            "region": "eu-west-1",
+            "storage_class": "STANDARD_IA",
+            "total_size_gb": 847,
+            "file_count": 23400,
+            "lifecycle_policy": "glacier-after-90d"
+        }
+    },
+    {
+        "name": "ml-models/fraud-detection/",
+        "type": "bucket",
+        "providers": [
+            "S3"
+        ],
+        "description": "Trained ML model artifacts for real-time fraud detection pipeline.",
+        "tags": [
+            "ml",
+            "fraud",
+            "models"
+        ],
+        "metadata": {
+            "region": "eu-west-1",
+            "storage_class": "STANDARD",
+            "total_size_gb": 12,
+            "latest_version": "v3.2.1",
+            "framework": "xgboost"
+        }
+    },
+    {
+        "name": "customer_360",
+        "type": "view",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Unified customer view joining demographic, transactional, and engagement data.",
+        "tags": [
+            "analytics",
+            "customer",
+            "derived"
+        ],
+        "schema": {
+            "customer_id": "integer",
+            "full_name": "varchar",
+            "email": "varchar",
+            "total_orders": "integer",
+            "total_spend": "decimal",
+            "avg_order_value": "decimal",
+            "last_order_date": "timestamp",
+            "customer_segment": "varchar"
+        },
+        "metadata": {
+            "database": "analytics",
+            "schema_name": "public",
+            "depends_on": [
+                "customers",
+                "orders"
+            ],
+            "owner": "analytics-team"
+        }
+    },
+    {
+        "name": "monthly_revenue_report",
+        "type": "view",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Aggregated monthly revenue breakdown by product category and region.",
+        "tags": [
+            "analytics",
+            "finance",
+            "reporting"
+        ],
+        "schema": {
+            "month": "date",
+            "category": "varchar",
+            "region": "varchar",
+            "total_revenue": "decimal",
+            "order_count": "integer",
+            "avg_order_value": "decimal"
+        },
+        "metadata": {
+            "database": "analytics",
+            "schema_name": "reporting",
+            "refresh_frequency": "daily",
+            "owner": "finance-team"
+        }
+    },
+    {
+        "name": "inventory_levels",
+        "type": "table",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Real-time inventory tracking across warehouses and fulfillment centers.",
+        "tags": [
+            "operations",
+            "inventory",
+            "supply-chain"
+        ],
+        "schema": {
+            "product_id": "integer",
+            "warehouse_id": "integer",
+            "quantity_available": "integer",
+            "quantity_reserved": "integer",
+            "reorder_point": "integer",
+            "last_restocked": "timestamp"
+        },
+        "metadata": {
+            "database": "operations",
+            "schema_name": "supply_chain",
+            "row_count": 18000,
+            "size_mb": 3.5,
+            "owner": "operations-team"
+        }
+    },
+    {
+        "name": "user_sessions",
+        "type": "table",
+        "providers": [
+            "PostgreSQL"
+        ],
+        "description": "Web application session data for analytics and security monitoring.",
+        "tags": [
+            "analytics",
+            "security",
+            "user-behavior"
+        ],
+        "schema": {
+            "session_id": "varchar(64)",
+            "user_id": "integer",
+            "start_time": "timestamp",
+            "end_time": "timestamp",
+            "ip_address": "inet",
+            "user_agent": "text",
+            "pages_visited": "integer"
+        },
+        "metadata": {
+            "database": "analytics",
+            "schema_name": "web",
+            "row_count": 2500000,
+            "size_mb": 890,
+            "retention_days": 90,
+            "owner": "platform-team"
+        }
+    },
+    {
+        "name": "shipping_notifications",
+        "type": "topic",
+        "providers": [
+            "Kafka"
+        ],
+        "description": "Shipping status update events from logistics partners.",
+        "tags": [
+            "streaming",
+            "logistics",
+            "notifications"
+        ],
+        "schema": {
+            "notification_id": "string",
+            "order_id": "integer",
+            "carrier": "string",
+            "status": "string",
+            "estimated_delivery": "string",
+            "tracking_number": "string"
+        },
+        "metadata": {
+            "cluster": "prod-kafka-01",
+            "partitions": 6,
+            "replication_factor": 3,
+            "avg_messages_per_sec": 50
+        }
+    }
+]

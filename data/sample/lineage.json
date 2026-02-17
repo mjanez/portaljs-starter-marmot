@@ -1,0 +1,27 @@
+[
+    {
+        "source": "mrn://table/postgresql/customers",
+        "target": "mrn://view/postgresql/customer_360",
+        "type": "direct"
+    },
+    {
+        "source": "mrn://table/postgresql/orders",
+        "target": "mrn://view/postgresql/customer_360",
+        "type": "direct"
+    },
+    {
+        "source": "mrn://table/postgresql/orders",
+        "target": "mrn://view/postgresql/monthly_revenue_report",
+        "type": "direct"
+    },
+    {
+        "source": "mrn://table/postgresql/products",
+        "target": "mrn://view/postgresql/monthly_revenue_report",
+        "type": "direct"
+    },
+    {
+        "source": "mrn://table/postgresql/orders",
+        "target": "mrn://topic/kafka/order_events",
+        "type": "direct"
+    }
+]
