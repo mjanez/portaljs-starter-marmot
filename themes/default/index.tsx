@@ -1,11 +1,13 @@
-import Footer from "@/components/_shared/Footer";
 import DefaultThemeLayout from "./layout";
-import TopBar from "../../components/_shared/TopBar";
+import styles from "./styles.module.scss";
+import LighterThemeHeader from "../lighter/header";
+import LighterThemeFooter from "../lighter/footer";
 
 const DefaultTheme = {
-  header: TopBar,
-  footer: Footer,
-  layout: DefaultThemeLayout,
+  header: LighterThemeHeader,
+  footer: LighterThemeFooter, // Use the same footer structure
+  layout: DefaultThemeLayout, // Use the same layout structure (particles, etc)
+  styles: styles,
 };
 
 export { DefaultTheme };

@@ -70,12 +70,12 @@ function SearchPageContent() {
             <div className="grid grid-rows-searchpage-hero">
                 <HeroSection title={t("search.title")} titleAccent={`${options.type}s`} />
                 <section className={`grid row-start-3 row-span-2 col-span-full pt-4 `}>
-                    <div className={`custom-container bg-white ${styles.shadowMd}`}>
+                    <div className={`custom-container bg-[var(--card-bg)] ${styles.shadowMd}`}>
                         <DatasetSearchForm />
                     </div>
                 </section>
             </div>
-            <div className="custom-container bg-white">
+            <div className="custom-container bg-[var(--background-color)]">
                 <article className="grid grid-cols-1 lg:grid-cols-9 gap-x-6 xl:gap-x-12 pt-[30px] pb-[30px]">
                     <div className="lg:col-span-3  lg:sticky top-3 h-fit">
                         <DatasetSearchFilters />

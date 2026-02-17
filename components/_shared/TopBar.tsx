@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { useTranslation } from "next-i18next";
 import LanguageSelector from "./LanguageSelector";
+import ThemeSelector from "./ThemeSelector";
 
 export default function TopBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -42,10 +43,12 @@ export default function TopBar() {
             </li>
           </div>
         </div>
-        <div className="hidden lg:flex items-center">
+        <div className="hidden lg:flex items-center gap-2">
+          <ThemeSelector variant="dark" />
           <LanguageSelector variant="dark" />
         </div>
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeSelector variant="dark" />
           <LanguageSelector variant="dark" />
           <button
             type="button"

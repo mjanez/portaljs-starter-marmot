@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
+import { useTheme } from "@/components/theme/theme-provider";
 
 const LANGUAGES = [
     { code: "en", label: "English", flagCode: "gb" },
@@ -10,6 +11,7 @@ export default function LanguageSelector({ variant = "auto" }: { variant?: "dark
     const router = useRouter();
     const [open, setOpen] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
+    const { currentTheme } = useTheme();
 
     const currentLang =
         LANGUAGES.find((l) => l.code === router.locale) ?? LANGUAGES[0];
@@ -30,19 +32,22 @@ export default function LanguageSelector({ variant = "auto" }: { variant?: "dark
         router.push(router.asPath, router.asPath, { locale: code });
     }
 
+    const isDark = currentTheme === "default";
+    const effectiveVariant = variant === "auto" ? (isDark ? "dark" : "light") : variant;
+
     // Style variants
     const btnClass =
-        variant === "dark"
+        effectiveVariant === "dark"
             ? "text-white bg-white/10 hover:bg-white/20 border-white/20"
             : "text-gray-700 bg-gray-100 hover:bg-gray-200 border-gray-300";
 
     const dropdownBg =
-        variant === "dark"
-            ? "bg-[#1a1a2e] border-white/10"
-            : "bg-white border-gray-200";
+        effectiveVariant === "dark"
+            ? "bg-[var(--card-bg)] border-white/10 text-white"
+            : "bg-white border-gray-200 text-gray-700";
 
     const itemClass = (isActive: boolean) =>
-        variant === "dark"
+        effectiveVariant === "dark"
             ? isActive
                 ? "bg-accent/20 text-accent font-semibold"
                 : "text-white/80 hover:bg-white/10 hover:text-white"

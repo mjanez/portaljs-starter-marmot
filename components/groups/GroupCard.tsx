@@ -16,18 +16,20 @@ export default function GroupCard({
   description,
   name,
 }: GroupCardProps) {
-  const { theme } = useTheme();
+  const { theme, currentTheme } = useTheme();
+  const isDark = currentTheme === "default";
   const url = image_display_url ? new URL(image_display_url) : undefined;
   return (
     <Link
       href={`/groups/${name}`}
-      className={`bg-white hover:bg-accent-50 group border-b-[4px] border-white hover:border-accent p-8 col-span-3 rounded-lg block h-full text-accent  ${theme.styles.shadowSm}`}
+      className={`bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] group border-b-[4px] border-transparent hover:border-accent p-8 col-span-3 rounded-lg block h-full text-accent  ${theme.styles.shadowSm}`}
     >
       <Image
+        className={isDark ? "invert" : ""}
         src={
           image_display_url &&
-          url &&
-          (getConfig().publicRuntimeConfig.DOMAINS ?? []).includes(url.hostname)
+            url &&
+            (getConfig().publicRuntimeConfig.DOMAINS ?? []).includes(url.hostname)
             ? image_display_url
             : "/images/logos/datasets.png"
         }
@@ -35,7 +37,7 @@ export default function GroupCard({
         width="54"
         height="54"
       ></Image>
-      <div className={`text-black`}>
+      <div className={`text-[var(--text-base)]`}>
         <h3 className="font-inter font-semibold text-lg mt-4 group-hover:text-accent">
           {display_name}
         </h3>

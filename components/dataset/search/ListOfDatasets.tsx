@@ -35,16 +35,17 @@ function ListItems() {
             {t("search.sortBy")}{" "}
             <select
               aria-label="Sort datasets by"
+              className="bg-[var(--card-bg)] text-[var(--text-base)] border border-gray-300 rounded p-1"
               value={options.sort ?? "score desc"}
               onChange={(e) => {
                 const value = e.target.value;
                 setOptions({ sort: value });
               }}
             >
-              <option value="score desc">{t("search.sortRelevant")}</option>
-              <option value="title_string asc">{t("search.sortNameAsc")}</option>
-              <option value="title_string desc">{t("search.sortNameDesc")}</option>
-              <option value="metadata_modified desc">{t("search.sortLastUpdated")}</option>
+              <option className="bg-[var(--card-bg)] text-[var(--text-base)]" value="score desc">{t("search.sortRelevant")}</option>
+              <option className="bg-[var(--card-bg)] text-[var(--text-base)]" value="title_string asc">{t("search.sortNameAsc")}</option>
+              <option className="bg-[var(--card-bg)] text-[var(--text-base)]" value="title_string desc">{t("search.sortNameDesc")}</option>
+              <option className="bg-[var(--card-bg)] text-[var(--text-base)]" value="metadata_modified desc">{t("search.sortLastUpdated")}</option>
             </select>
           </div>
         </div>
@@ -104,7 +105,7 @@ function FilterBadges() {
   return (
     <div className="border-b border-gray-100 pb-2">
       {!!activeFiltersCount && (
-        <span className="text-xs  text-gray-800 mb-2 inline-block">
+        <span className="text-xs  text-[var(--text-base)] mb-2 inline-block">
           {t("search.appliedFilters")}{" "}
           <span className="font-[600]">
             ({activeFiltersCount}
@@ -227,7 +228,7 @@ function ResultsNotFound() {
     router.push("/search", undefined, { shallow: true });
   };
   return (
-    <div className="mt-5 flex flex-col items-center rounded-[20px] border border-[#F7F7F7] bg-white gap-4 px-20">
+    <div className="mt-5 flex flex-col items-center rounded-[20px] border border-transparent bg-[var(--card-bg)] gap-4 px-20">
       <Image
         src={"/images/search/noDatasets.svg"}
         height={269}
@@ -235,10 +236,10 @@ function ResultsNotFound() {
         alt="no datasets found"
       />
       <div className="flex flex-col items-center gap-2">
-        <span className="text-[#313131] font-medium text-[18px] leading-[23px]">
+        <span className="text-[var(--text-base)] font-medium text-[18px] leading-[23px]">
           {t("search.noResults")}
         </span>
-        <span className="text-[#4C4C4C] text-center font-normal text-[15px] leading-[20px]">
+        <span className="text-[var(--gray)] text-center font-normal text-[15px] leading-[20px]">
           {t("search.noResultsHint")}
         </span>
       </div>
@@ -266,7 +267,7 @@ function ActiveFilter({
       onClick={() => {
         onClick();
       }}
-      className="inline-flex items-center cursor-pointer gap-x-0.5 rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
+      className="inline-flex items-center cursor-pointer gap-x-0.5 rounded-md bg-[var(--card-hover-bg)] px-2 py-1 text-xs font-medium text-[var(--text-base)] ring-1 ring-inset ring-gray-500/10"
     >
       {label}
       <button

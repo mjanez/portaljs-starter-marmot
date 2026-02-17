@@ -24,11 +24,11 @@ export default function DatasetItem({
   return (
     <Link
       href={`/@${dataset.organization.name}/${getDatasetName(dataset.name)}`}
-      className={`flex items-start gap-4 hover:bg-white hover:shadow-lg transition-all p-4 rounded-[10px] ${styles.shadowMd}`}
+      className={`flex items-start gap-4 bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] hover:shadow-lg transition-all p-4 rounded-[10px] ${styles.shadowMd}`}
     >
       <span className="min-w-[5px] min-h-[5px] bg-accent rounded-full mt-3 hidden"></span>
       <div className="w-full">
-        <div className="text-lg font-semibold text-gray-900">
+        <div className="text-lg font-semibold text-[var(--text-base)]">
           {dataset.title}
         </div>
 
@@ -38,11 +38,11 @@ export default function DatasetItem({
         <div className="text-sm flex gap-2 flex-col md:flex-row md:flex-wrap">
           <div className="flex items-center gap-2 ">
             <RiOrganizationChart className="text-accent" />
-            <span className=" text-gray-500">{dataset.organization.title}</span>
+            <span className=" text-[var(--gray)]">{dataset.organization.title}</span>
           </div>
           <div className="flex items-center gap-2 ">
             <RiMapPinTimeLine className="text-accent" />
-            <span className=" text-gray-500">
+            <span className=" text-[var(--gray)]">
               {dataset.metadata_modified &&
                 getTimeAgo(dataset.metadata_modified)}
             </span>
@@ -50,7 +50,7 @@ export default function DatasetItem({
           {!!dataset.tags?.length && (
             <div className="flex items-center gap-2 ">
               <RiPriceTagLine className="text-accent" />
-              <span className="text-gray-500 line-clamp-1">
+              <span className="text-[var(--gray)] line-clamp-1">
                 {dataset.tags.map((t) => t.display_name).join(", ")}
               </span>
             </div>

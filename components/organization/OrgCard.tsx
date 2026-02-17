@@ -10,26 +10,31 @@ type OrgCardProps = Pick<
   "display_name" | "image_display_url" | "description" | "name"
 >;
 
+import { useTheme } from "../theme/theme-provider";
+
 export default function GroupCard({
   display_name,
   image_display_url,
   description,
   name,
 }: OrgCardProps) {
+  const { currentTheme } = useTheme();
+  const isDark = currentTheme === "default";
   const url = image_display_url ? new URL(image_display_url) : undefined;
   return (
     <Link
       href={`/@${name}`}
-      className="border-b-[4px] p-8 border-white  bg-white hover:bg-accent-50 group block border-b-[4px] hover:border-accent rounded-lg shadow-lg"
+      className="border-b-[4px] p-8 border-transparent bg-[var(--card-bg)] hover:bg-[var(--card-hover-bg)] group block hover:border-accent rounded-lg shadow-lg"
     >
       <div className=" col-span-3  h-full  flex flex-col ">
         <Image
+          className={isDark ? "invert" : ""}
           src={
             image_display_url &&
-            url &&
-            (getConfig().publicRuntimeConfig.DOMAINS ?? []).includes(
-              url.hostname
-            )
+              url &&
+              (getConfig().publicRuntimeConfig.DOMAINS ?? []).includes(
+                url.hostname
+              )
               ? image_display_url
               : "/images/logos/DefaultOrgLogo.svg"
           }
@@ -41,7 +46,7 @@ export default function GroupCard({
           {display_name}
         </h3>
         <p className="font-inter font-medium text-sm mt-1 mb-6 line-clamp-2">
-            <div dangerouslySetInnerHTML={{__html: description}}></div>
+          <div dangerouslySetInnerHTML={{ __html: description }}></div>
         </p>
 
         <span className="font-inter mt-auto font-medium text-sm text-accent cursor-pointer flex items-center gap-1">
