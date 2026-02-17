@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import { useState, useRef, useEffect } from "react";
 
 const LANGUAGES = [
-    { code: "en", label: "English", flag: "🇬🇧" },
-    { code: "es", label: "Español", flag: "🇪🇸" },
+    { code: "en", label: "English", flagCode: "gb" },
+    { code: "es", label: "Español", flagCode: "es" },
 ];
 
 export default function LanguageSelector({ variant = "auto" }: { variant?: "dark" | "light" | "auto" }) {
@@ -60,7 +60,7 @@ export default function LanguageSelector({ variant = "auto" }: { variant?: "dark
                 aria-haspopup="true"
                 aria-expanded={open}
             >
-                <span className="text-base leading-none">{currentLang.flag}</span>
+                <span className={`fi fi-${currentLang.flagCode} text-base leading-none`} />
                 <span className="hidden sm:inline">{currentLang.code.toUpperCase()}</span>
                 <svg
                     className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
@@ -82,7 +82,7 @@ export default function LanguageSelector({ variant = "auto" }: { variant?: "dark
                             onClick={() => switchLocale(lang.code)}
                             className={`flex w-full items-center gap-3 px-4 py-2.5 text-sm transition-colors duration-150 ${itemClass(lang.code === currentLang.code)}`}
                         >
-                            <span className="text-lg leading-none">{lang.flag}</span>
+                            <span className={`fi fi-${lang.flagCode} text-lg leading-none`} />
                             <span>{lang.label}</span>
                             {lang.code === currentLang.code && (
                                 <svg
