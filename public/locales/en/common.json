@@ -1,0 +1,106 @@
+{
+    "nav": {
+        "datasets": "DATASETS",
+        "organizations": "PROVIDERS",
+        "groups": "GROUPS",
+        "glossary": "GLOSSARY",
+        "openMainMenu": "Open main menu",
+        "closeMenu": "Close menu",
+        "logoAlt": "Portal"
+    },
+    "home": {
+        "title": "Find and Share",
+        "titleAccent": "Quality Data.",
+        "subtitle": "Explore thousands of curated data assets from your organization's data catalog. Browse by provider, type, or tag to discover the data you need.",
+        "stats": {
+            "datasets": "Dataset",
+            "organizations": "Organization"
+        }
+    },
+    "search": {
+        "title": "Search datasets",
+        "placeholder": "Search...",
+        "resultsCount": "{{count}} Datasets",
+        "sortBy": "Sort by:",
+        "sortRelevant": "Most relevant",
+        "sortNameAsc": "Name ascending",
+        "sortNameDesc": "Name descending",
+        "sortLastUpdated": "Last updated",
+        "noResults": "No datasets found.",
+        "noResultsHint": "It looks like no datasets match your current search criteria. Try reducing the number of filters or broadening your search terms and give it another go.",
+        "clearFilters": "Clear filters",
+        "clearAll": "clear all",
+        "appliedFilters": "Applied Filters",
+        "showFilters": "Show Filters",
+        "hideFilters": "Hide Filters"
+    },
+    "filters": {
+        "type": "Type",
+        "datasets": "Datasets",
+        "refineByOrg": "Refine by",
+        "organization": "Organization",
+        "tags": "Tags",
+        "format": "Format",
+        "seeMore": "See More",
+        "seeLess": "See Less"
+    },
+    "dataset": {
+        "resources": "Resources:",
+        "formats": "Formats:",
+        "created": "Created:",
+        "updated": "Updated:",
+        "lastUpdated": "Last updated:",
+        "noDescription": "No description",
+        "overview": "Overview",
+        "dataExplorer": "Data Explorer",
+        "downloads": "Downloads",
+        "dataFiles": "Data and files",
+        "additionalInfo": "Additional information",
+        "columns": "Columns",
+        "metadata": "Metadata"
+    },
+    "popular": {
+        "label": "MOST POPULAR DATASETS",
+        "title": "Highlights"
+    },
+    "organizations": {
+        "title": "Providers",
+        "description": "Data assets from {{name}}"
+    },
+    "org": {
+        "assets": "Assets",
+        "activityStream": "Activity Stream"
+    },
+    "glossary": {
+        "title": "Glossary",
+        "terms": "Terms",
+        "noTerms": "No terms",
+        "relatedTerms": "Related terms:",
+        "none": "None",
+        "loading": "Loading..."
+    },
+    "groups": {
+        "title": "Groups"
+    },
+    "pagination": {
+        "prev": "Prev",
+        "next": "Next"
+    },
+    "footer": {
+        "aboutDatopian": "ABOUT DATOPIAN",
+        "aboutUs": "About Us",
+        "ourTechnology": "Our Technology",
+        "storybook": "Storybook",
+        "usefulLinks": "USEFUL LINKS",
+        "requestData": "Request data",
+        "login": "Login",
+        "getStarted": "GET STARTED",
+        "findData": "Find data",
+        "publishData": "Publish data",
+        "getHelp": "Get help",
+        "stayUpToDate": "STAY UP TO DATE WITH THE NEWS"
+    },
+    "common": {
+        "home": "Home"
+    }
+}

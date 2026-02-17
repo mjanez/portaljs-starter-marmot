@@ -2,9 +2,12 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { useState } from "react";
+import { useTranslation } from "next-i18next";
+import LanguageSelector from "./LanguageSelector";
 
-export default function Example() {
+export default function TopBar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useTranslation("common");
 
   return (
     <header className="bg-transparent">
@@ -19,33 +22,37 @@ export default function Example() {
               src="/images/logos/MainLogo.svg"
               width="60px"
               height="60px"
-              alt="Portal"
+              alt={t("nav.logoAlt")}
             ></img>
           </Link>
           <div className="hidden lg:flex lg:gap-x-12">
             <li className="flex gap-x-8 align-center">
               <Link href="/search" className="font-semibold text-white my-auto">
-                DATASETS
+                {t("nav.datasets")}
               </Link>
               <Link
                 href="/organizations"
                 className="font-semibold text-white my-auto"
               >
-                ORGS
+                {t("nav.organizations")}
               </Link>
-              <Link href="/groups" className="font-semibold text-white my-auto">
-                GROUPS
+              <Link href="/glossaries" className="font-semibold text-white my-auto">
+                {t("nav.glossary")}
               </Link>
             </li>
           </div>
         </div>
-        <div className="flex lg:hidden">
+        <div className="hidden lg:flex items-center">
+          <LanguageSelector variant="dark" />
+        </div>
+        <div className="flex items-center gap-3 lg:hidden">
+          <LanguageSelector variant="dark" />
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 bg-white"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">{t("nav.openMainMenu")}</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
@@ -65,7 +72,7 @@ export default function Example() {
                 src="/images/logos/MainLogo.svg"
                 width="60px"
                 height="60px"
-                alt="Portal"
+                alt={t("nav.logoAlt")}
               ></img>
             </Link>
             <button
@@ -73,7 +80,7 @@ export default function Example() {
               className="-m-2.5 rounded-md p-2.5 text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="sr-only">Close menu</span>
+              <span className="sr-only">{t("nav.closeMenu")}</span>
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
@@ -84,19 +91,19 @@ export default function Example() {
                   href="/search"
                   className="font-semibold text-white my-auto"
                 >
-                  DATASETS
+                  {t("nav.datasets")}
                 </Link>
                 <Link
                   href="/organizations"
                   className="font-semibold text-white my-auto"
                 >
-                  ORGS
+                  {t("nav.organizations")}
                 </Link>
                 <Link
-                  href="/groups"
+                  href="/glossaries"
                   className="font-semibold text-white my-auto"
                 >
-                  GROUPS
+                  {t("nav.glossary")}
                 </Link>
               </div>
             </div>

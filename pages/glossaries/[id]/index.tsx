@@ -5,6 +5,8 @@ import Layout from "@/components/_shared/Layout";
 import HeroSection from "@/components/_shared/HeroSection";
 // Note: You might need to adjust TermsNavCrumbs if it depends strictly on FQNs
 import TermsNavCrumbs from "@/components/glossary/TermsNavCrumbs";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 export async function getServerSideProps(context: any) {
     const id = context.params.id as string;
@@ -23,12 +25,16 @@ export async function getServerSideProps(context: any) {
     };
 
     return {
-        props: { term: adaptedTerm },
+        props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
+            term: adaptedTerm,
+        },
     };
 }
 
 export default function TermPage({ term }: any) {
     const relatedTerms = term?.relatedTerms;
+    const { t } = useTranslation("common");
 
     return (
         <>
@@ -49,13 +55,13 @@ export default function TermPage({ term }: any) {
                                         ? relatedTerms.map((rt: any) => {
                                             return <span key={rt.id ?? rt.name}>{rt.name}</span>;
                                         })
-                                        : "None"}
+                                        : t("glossary.none")}
                                 </div>
                             </div>
                         </div>
                         <div>
                             <p className="text-sm font-semibold text-muted-foreground">
-                                Terms
+                                {t("glossary.terms")}
                             </p>
                             {/* Pass the ID so the list can fetch children */}
                             <TermsList key={term.id} path={term.id} />

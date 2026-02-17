@@ -10,6 +10,8 @@ import styles from "styles/DatasetInfo.module.scss";
 import { getAsset } from "@/lib/queries/assets";
 import HeroSection from "@/components/_shared/HeroSection";
 import { DatasetPageStructuredData } from "@/components/schema/DatasetPageStructuredData";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     const datasetName = context.params?.dataset as string;
@@ -45,6 +47,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
         return {
             props: {
+                ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
                 dataset,
             },
         };
@@ -56,6 +59,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default function DatasetPage({ dataset }): JSX.Element {
+    const { t } = useTranslation("common");
     const tabs = [
         {
             id: "resources",
@@ -66,12 +70,12 @@ export default function DatasetPage({ dataset }): JSX.Element {
                     datasetName={dataset.name}
                 />
             ),
-            title: "Resources",
+            title: t("dataset.resources"),
         },
         {
             id: "information",
             content: <DatasetOverview dataset={dataset} />,
-            title: "Info",
+            title: t("dataset.overview"),
         },
         {
             id: "activity-stream",
@@ -80,7 +84,7 @@ export default function DatasetPage({ dataset }): JSX.Element {
                     activities={dataset?.activity_stream ? dataset.activity_stream : []}
                 />
             ),
-            title: "Activity Stream",
+            title: t("org.activityStream"),
         },
     ];
     return (

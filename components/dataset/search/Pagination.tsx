@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { useSearchState } from "./SearchContext";
+import { useTranslation } from "next-i18next";
 
 export default function Pagination({
   subsetOfPages,
@@ -11,6 +12,7 @@ export default function Pagination({
   count: number;
 }) {
   const { options, setOptions } = useSearchState();
+  const { t } = useTranslation("common");
 
   const max = 10;
 
@@ -35,17 +37,16 @@ export default function Pagination({
               fill="#AAAAAA"
             />
           </svg>
-          <span className="text-[#757575] text-[18px]">Prev</span>
+          <span className="text-[#757575] text-[18px]">{t("pagination.prev")}</span>
         </button>
       )}
       {Array.from(Array(Math.ceil(count / max)).keys()).map((x) => (
         <button
           key={x}
-          className={`${
-            x == options.offset / max
+          className={`${x == options.offset / max
               ? "bg-accent !h-9 !w-9 rounded-[10px] text-white"
               : ""
-          } px-2 font-semibold`}
+            } px-2 font-semibold`}
           onClick={() => {
             setOptions({ ...options, offset: x * max });
             if (typeof window !== "undefined") {
@@ -68,7 +69,7 @@ export default function Pagination({
           className="font-semibold flex items-center gap-2"
           onClick={() => setSubsetOfPages(subsetOfPages + max)}
         >
-          <span className="text-[18px] text-[#313131]">Next</span>
+          <span className="text-[18px] text-[#313131]">{t("pagination.next")}</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

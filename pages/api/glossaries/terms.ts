@@ -19,8 +19,11 @@ export default async function handler(
 
             const terms = await getChildTerms({ id: directChildrenOf });
 
+            // Ensure terms is always an array
+            const termsArray = Array.isArray(terms) ? terms : [];
+
             // Transform to match what TermsList expects
-            const data = terms.map((term: any) => ({
+            const data = termsArray.map((term: any) => ({
                 ...term,
                 displayName: term.name,
                 description: term.definition || term.description || "",

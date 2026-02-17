@@ -5,11 +5,14 @@ import ListOfOrgs from "../components/organization/ListOfOrganizations";
 import Layout from "../components/_shared/Layout";
 import { OrganizationPageStructuredData } from "@/components/schema/OrganizationPageStructuredData";
 import { getAllProviders } from "@/lib/queries/providers";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
     const orgs = await getAllProviders();
     return {
         props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
             orgs,
         },
     };
@@ -37,11 +40,12 @@ function Main({
     orgs: any[];
 }) {
     const [searchString, setSearchString] = useState("");
+    const { t } = useTranslation("common");
     return (
         <>
             <Layout>
                 <SearchHero
-                    title="Providers"
+                    title={t("organizations.title")}
                     searchValue={searchString}
                     onChange={setSearchString}
                 />

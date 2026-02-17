@@ -10,6 +10,8 @@ import { getProvider } from "@/lib/queries/providers";
 
 import HeroSection from "@/components/_shared/HeroSection";
 import { OrganizationIndividualPageStructuredData } from "@/components/schema/OrganizationIndividualPageStructuredData";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     let orgName = context.params?.org as string;
@@ -30,12 +32,14 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
     return {
         props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
             org,
         },
     };
 };
 
 export default function OrgPage({ org }): JSX.Element {
+    const { t } = useTranslation("common");
     const tabs = [
         {
             id: "datasets",
@@ -44,7 +48,7 @@ export default function OrgPage({ org }): JSX.Element {
             ) : (
                 ""
             ),
-            title: "Assets",
+            title: t("org.assets"),
         },
         {
             id: "activity-stream",
@@ -53,7 +57,7 @@ export default function OrgPage({ org }): JSX.Element {
                     activities={org?.activity_stream ? org.activity_stream : []}
                 />
             ),
-            title: "Activity Stream",
+            title: t("org.activityStream"),
         },
     ];
     return (

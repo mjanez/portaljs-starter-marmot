@@ -13,8 +13,10 @@ import {
 } from "@/components/dataset/search/SearchContext";
 import { PackageSearchOptions } from "@/schemas/asset.interface";
 import { SearchPageStructuredData } from "@/components/schema/SearchPageStructuredData";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
     const initialRequestOption: PackageSearchOptions = {
         offset: 0,
         limit: 10,
@@ -28,6 +30,7 @@ export async function getServerSideProps() {
 
     return {
         props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
             fallback: {
                 [unstable_serialize(["package_search", initialRequestOption])]:
                     search_result,
@@ -60,11 +63,12 @@ function SearchPageContent() {
     const {
         theme: { styles },
     } = useTheme();
+    const { t } = useTranslation("common");
 
     return (
         <Layout>
             <div className="grid grid-rows-searchpage-hero">
-                <HeroSection title="Search" titleAccent={`${options.type}s`} />
+                <HeroSection title={t("search.title")} titleAccent={`${options.type}s`} />
                 <section className={`grid row-start-3 row-span-2 col-span-full pt-4 `}>
                     <div className={`custom-container bg-white ${styles.shadowMd}`}>
                         <DatasetSearchForm />

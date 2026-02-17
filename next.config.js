@@ -1,4 +1,6 @@
 /** @type {import('next').NextConfig} */
+const { i18n } = require("./next-i18next.config");
+
 const domains = [
     "demo.marmotdata.io",
     "demo.dev.datopian.com",
@@ -10,6 +12,7 @@ const nextConfig = {
     swcMinify: true,
     // Enable standalone output for Docker deployment
     output: "standalone",
+    i18n,
     eslint: {
         // Warning: This allows production builds to successfully complete even if
         // your project has ESLint errors.
