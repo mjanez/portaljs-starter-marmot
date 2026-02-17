@@ -1,37 +1,41 @@
+import { useTranslation } from "next-i18next";
+
 interface IconProps {
   className: string;
   "aria-hidden": boolean;
 }
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation("common");
+
   const navigation = {
     about: [
-      { name: "About Us", href: "https://www.datopian.com/about/" },
+      { name: t("footer.aboutUs"), href: "https://www.datopian.com/about/" },
       {
-        name: "Our Technology",
+        name: t("footer.ourTechnology"),
         href: "https://portaljs.com",
       },
       {
-        name: "Storybook",
+        name: t("footer.storybook"),
         href: "https://storybook.portaljs.org/?path=/docs/components-introduction--docs",
       },
     ],
     useful: [
-      { name: "Organizations", href: "/organizations" },
-      { name: "Request data", href: "/request" },
-      { name: "Login", href: "https://cloud.portaljs.com/auth/signin" },
+      { name: t("nav.organizations"), href: "/organizations" },
+      { name: t("footer.requestData"), href: "/request" },
+      { name: t("footer.login"), href: "https://cloud.portaljs.com/auth/signin" },
     ],
     getStarted: [
       {
-        name: "Find data",
+        name: t("footer.findData"),
         href: "/search",
       },
       {
-        name: "Publish data",
+        name: t("footer.publishData"),
         href: "#",
       },
       {
-        name: "Get help",
+        name: t("footer.getHelp"),
         href: "#",
       },
     ],
@@ -105,7 +109,7 @@ const Footer: React.FC = () => {
       <div className="custom-container flex flex-col flex-wrap py-10 mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap">
         <div className="justify-between w-full text-center md:text-left lg:flex">
           <div className="w-full lg:w-1/3 md:w-1/2">
-            <h2 className="mt-4 mb-4 font-roboto font-black">ABOUT DATOPIAN</h2>
+            <h2 className="mt-4 mb-4 font-roboto font-black">{t("footer.aboutDatopian")}</h2>
             <ul className="space-y-4 text-sm list-none">
               {navigation.about.map((item) => (
                 <li key={item.name}>
@@ -121,7 +125,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-1/3 md:w-1/2">
-            <h2 className="mt-4 mb-4 font-roboto font-black">USEFUL LINKS</h2>
+            <h2 className="mt-4 mb-4 font-roboto font-black">{t("footer.usefulLinks")}</h2>
             <ul className="space-y-4 text-sm list-none">
               {navigation.useful.map((item) => (
                 <li key={item.name}>
@@ -137,7 +141,7 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="w-full lg:w-1/3 md:w-1/2">
-            <h2 className="mt-4 mb-4 font-roboto font-black">GET STARTED</h2>
+            <h2 className="mt-4 mb-4 font-roboto font-black">{t("footer.getStarted")}</h2>
             <ul className="space-y-4 text-sm list-none">
               {navigation.getStarted.map((item) => (
                 <li key={item.name}>
@@ -154,7 +158,7 @@ const Footer: React.FC = () => {
         </div>
         <div className="w-full md:w-1/2 flex flex-col justify-between text-center md:text-left">
           <h2 className="mt-4 mb-4 font-roboto font-black">
-            STAY UP TO DATE WITH THE NEWS
+            {t("footer.stayUpToDate")}
           </h2>
           <div className="flex mt-5 space-x-5 justify-center md:justify-start">
             {navigation.social.map((item) => (

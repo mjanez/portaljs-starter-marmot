@@ -1,0 +1,106 @@
+{
+    "nav": {
+        "datasets": "CONJUNTOS DE DATOS",
+        "organizations": "PROVEEDORES",
+        "groups": "GRUPOS",
+        "glossary": "GLOSARIO",
+        "openMainMenu": "Abrir menú principal",
+        "closeMenu": "Cerrar menú",
+        "logoAlt": "Portal"
+    },
+    "home": {
+        "title": "Encuentra y Comparte",
+        "titleAccent": "Datos de Calidad.",
+        "subtitle": "Explora miles de activos de datos curados del catálogo de datos de tu organización. Navega por proveedor, tipo o etiqueta para descubrir los datos que necesitas.",
+        "stats": {
+            "datasets": "Conjunto de datos",
+            "organizations": "Organización"
+        }
+    },
+    "search": {
+        "title": "Buscar conjuntos de datos",
+        "placeholder": "Buscar...",
+        "resultsCount": "{{count}} Conjuntos de datos",
+        "sortBy": "Ordenar por:",
+        "sortRelevant": "Más relevante",
+        "sortNameAsc": "Nombre ascendente",
+        "sortNameDesc": "Nombre descendente",
+        "sortLastUpdated": "Última actualización",
+        "noResults": "No se encontraron conjuntos de datos.",
+        "noResultsHint": "Parece que ningún conjunto de datos coincide con tus criterios de búsqueda actuales. Prueba a reducir el número de filtros o ampliar los términos de búsqueda e inténtalo de nuevo.",
+        "clearFilters": "Limpiar filtros",
+        "clearAll": "limpiar todo",
+        "appliedFilters": "Filtros aplicados",
+        "showFilters": "Mostrar filtros",
+        "hideFilters": "Ocultar filtros"
+    },
+    "filters": {
+        "type": "Tipo",
+        "datasets": "Conjuntos de datos",
+        "refineByOrg": "Filtrar por",
+        "organization": "Organización",
+        "tags": "Etiquetas",
+        "format": "Formato",
+        "seeMore": "Ver más",
+        "seeLess": "Ver menos"
+    },
+    "dataset": {
+        "resources": "Recursos:",
+        "formats": "Formatos:",
+        "created": "Creado:",
+        "updated": "Actualizado:",
+        "lastUpdated": "Última actualización:",
+        "noDescription": "Sin descripción",
+        "overview": "Visión general",
+        "dataExplorer": "Explorador de datos",
+        "downloads": "Descargas",
+        "dataFiles": "Datos y archivos",
+        "additionalInfo": "Información adicional",
+        "columns": "Columnas",
+        "metadata": "Metadatos"
+    },
+    "popular": {
+        "label": "CONJUNTOS DE DATOS MÁS POPULARES",
+        "title": "Destacados"
+    },
+    "organizations": {
+        "title": "Proveedores",
+        "description": "Activos de datos de {{name}}"
+    },
+    "org": {
+        "assets": "Activos",
+        "activityStream": "Flujo de actividad"
+    },
+    "glossary": {
+        "title": "Glosario",
+        "terms": "Términos",
+        "noTerms": "Sin términos",
+        "relatedTerms": "Términos relacionados:",
+        "none": "Ninguno",
+        "loading": "Cargando..."
+    },
+    "groups": {
+        "title": "Grupos"
+    },
+    "pagination": {
+        "prev": "Anterior",
+        "next": "Siguiente"
+    },
+    "footer": {
+        "aboutDatopian": "SOBRE DATOPIAN",
+        "aboutUs": "Sobre nosotros",
+        "ourTechnology": "Nuestra tecnología",
+        "storybook": "Storybook",
+        "usefulLinks": "ENLACES ÚTILES",
+        "requestData": "Solicitar datos",
+        "login": "Iniciar sesión",
+        "getStarted": "EMPEZAR",
+        "findData": "Buscar datos",
+        "publishData": "Publicar datos",
+        "getHelp": "Obtener ayuda",
+        "stayUpToDate": "MANTENTE AL DÍA CON LAS NOTICIAS"
+    },
+    "common": {
+        "home": "Inicio"
+    }
+}

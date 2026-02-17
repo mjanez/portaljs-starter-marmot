@@ -5,21 +5,25 @@ import { listGlossaries } from "@/lib/queries/glossary";
 import { Disclosure } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/20/solid";
 import styles from "styles/DatasetInfo.module.scss";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
     const glossaries = await listGlossaries();
     return {
         props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
             glossaries: glossaries.data,
         },
     };
 }
 
 export default function Page({ glossaries }) {
+    const { t } = useTranslation("common");
     return (
         <Layout>
             <div className="grid grid-rows-searchpage-hero">
-                <HeroSection title="Glossary" />
+                <HeroSection title={t("glossary.title")} />
                 <section className={`grid row-start-3 row-span-2 col-span-full pt-4 `}>
                     <div className={`custom-container bg-white ${styles.shadowMd}`}></div>
                 </section>

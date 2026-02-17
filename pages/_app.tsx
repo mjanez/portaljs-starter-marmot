@@ -4,6 +4,7 @@ import "@/styles/tabs.scss";
 
 import type { AppProps } from "next/app";
 import { DefaultSeo } from "next-seo";
+import { appWithTranslation } from "next-i18next";
 
 import SEO from "../next-seo.config";
 
@@ -43,4 +44,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);

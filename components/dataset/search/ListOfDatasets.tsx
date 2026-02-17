@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useSearchState } from "./SearchContext";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import DatasetItem from "./DatasetItem";
+import { useTranslation } from "next-i18next";
 
 export default function ListOfDatasets() {
   return (
@@ -17,6 +18,7 @@ export default function ListOfDatasets() {
 
 function ListItems() {
   const { options, setOptions, searchResults, isLoading } = useSearchState();
+  const { t } = useTranslation("common");
 
   const [subsetOfPages, setSubsetOfPages] = useState(0);
 
@@ -25,12 +27,12 @@ function ListItems() {
       <div className="flex justify-between flex-col md:flex-row md:items-center flex-wrap gap-3">
         <div className="flex gap-2">
           <h2 className="text-[23px] leading-[28px] capitalize font-bold  ">
-            {searchResults?.count} Datasets
+            {t("search.resultsCount", { count: searchResults?.count ?? 0 })}
           </h2>
         </div>
         <div className="flex gap-2 cursor-pointer">
           <div className="font-normal text-[14px]">
-            Sort by:{" "}
+            {t("search.sortBy")}{" "}
             <select
               aria-label="Sort datasets by"
               value={options.sort ?? "score desc"}
@@ -39,10 +41,10 @@ function ListItems() {
                 setOptions({ sort: value });
               }}
             >
-              <option value="score desc">Most relevant</option>
-              <option value="title_string asc">Name ascending</option>
-              <option value="title_string desc">Name descending </option>
-              <option value="metadata_modified desc">Last updated</option>
+              <option value="score desc">{t("search.sortRelevant")}</option>
+              <option value="title_string asc">{t("search.sortNameAsc")}</option>
+              <option value="title_string desc">{t("search.sortNameDesc")}</option>
+              <option value="metadata_modified desc">{t("search.sortLastUpdated")}</option>
             </select>
           </div>
         </div>
@@ -69,6 +71,7 @@ function ListItems() {
 
 function FilterBadges() {
   const { options, setOptions, searchFacets } = useSearchState();
+  const { t } = useTranslation("common");
 
   const getActiveFilters = (optionKey: string, facetKey: string) => {
     if (
@@ -102,7 +105,7 @@ function FilterBadges() {
     <div className="border-b border-gray-100 pb-2">
       {!!activeFiltersCount && (
         <span className="text-xs  text-gray-800 mb-2 inline-block">
-          Applied Filters{" "}
+          {t("search.appliedFilters")}{" "}
           <span className="font-[600]">
             ({activeFiltersCount}
             ):
@@ -177,7 +180,7 @@ function FilterBadges() {
             }}
             className="inline-flex h-fit w-fit cursor-pointer ml-auto items-center gap-x-0.5 rounded-md bg-gray-900 px-2 py-1 text-xs font-medium text-white ring-1 ring-inset ring-gray-500/10"
           >
-            clear all
+            {t("search.clearAll")}
             <button
               type="button"
               className="group relative -mr-1 size-3.5 rounded-sm hover:bg-gray-500/20"
@@ -218,6 +221,7 @@ function PackagePagination({
 
 function ResultsNotFound() {
   const router = useRouter();
+  const { t } = useTranslation("common");
 
   const clearFilters = () => {
     router.push("/search", undefined, { shallow: true });
@@ -232,12 +236,10 @@ function ResultsNotFound() {
       />
       <div className="flex flex-col items-center gap-2">
         <span className="text-[#313131] font-medium text-[18px] leading-[23px]">
-          No datasets found.
+          {t("search.noResults")}
         </span>
         <span className="text-[#4C4C4C] text-center font-normal text-[15px] leading-[20px]">
-          It looks like no datasets match your current search criteria. Try
-          reducing the number of filters or broadening your search terms and
-          give it another go.
+          {t("search.noResultsHint")}
         </span>
       </div>
       <div
@@ -245,7 +247,7 @@ function ResultsNotFound() {
         className="cursor-pointer rounded-[20px] w-[118px] h-[41px] bg-[linear-gradient(90deg,_#489FA9_0%,_#803D6E_100%)] flex items-center justify-center"
       >
         <span className="text-white font-medium text-[16px] leading-normal">
-          Clear fitlers
+          {t("search.clearFilters")}
         </span>
       </div>
     </div>

@@ -128,7 +128,8 @@ export async function getChildTerms({ id }: { id: string }) {
             return [];
         }
         const data = await res.json();
-        return data.children || data.terms || data || [];
+        const result = data.children || data.terms || (Array.isArray(data) ? data : []);
+        return Array.isArray(result) ? result : [];
     } catch (error) {
         console.error("getChildTerms exception:", error);
         return [];
@@ -146,7 +147,8 @@ export async function getAncestorTerms({ id }: { id: string }) {
             return [];
         }
         const data = await res.json();
-        return data.terms || data || [];
+        const result = data.terms || (Array.isArray(data) ? data : []);
+        return Array.isArray(result) ? result : [];
     } catch (error) {
         console.error("getAncestorTerms exception:", error);
         return [];

@@ -1,4 +1,5 @@
 import SearchForm from "./SearchForm";
+import { useTranslation } from "next-i18next";
 
 import {
   RiFileCopy2Line,
@@ -15,19 +16,19 @@ export default function HeroSectionLight({
     datasetCount: number;
   };
 }) {
+  const { t } = useTranslation("common");
+
   return (
     <div>
       <div className="custom-container mx-auto bg-white">
         <div className="flex flex-col lg:flex-row lg:items-center py-[30px] md:py-[80px] lg:py-[140px] gap-10 lg:gap-0">
           <div className="lg:max-w-[478px]">
             <h1 className="font-black text-[40px] md:text-[55px] flex flex-col leading-[50px] md:leading-[65px]">
-              <span>Find and Share</span>
-              <span className="text-accent">Quality Data.</span>
+              <span>{t("home.title")}</span>
+              <span className="text-accent">{t("home.titleAccent")}</span>
             </h1>
             <p className="text-[16px] md:text-[20px] text-[var(--text-gray)] mt-[10px] mb-[30px]">
-              At Portal, we have over thousands of datasets for free and a
-              Premium Data Service for additional or customised data with
-              guaranteed updates.
+              {t("home.subtitle")}
             </p>
 
             <SearchForm />
@@ -39,13 +40,13 @@ export default function HeroSectionLight({
               Icon={RiFileCopy2Line}
               href="/search"
               count={stats.datasetCount}
-              label="Dataset"
+              label={t("home.stats.datasets")}
             />
             <Stat
               Icon={RiTeamLine}
               href="/organizations"
               count={stats.orgCount}
-              label="Organization"
+              label={t("home.stats.organizations")}
             />
           </div>
         </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useTheme } from "@/components/theme/theme-provider";
 import { getDatasetName } from "@/lib/utils";
 import { Dataset } from "@/schemas/dataset.interface";
+import { useTranslation } from "next-i18next";
 
 type DatasetLinkProps = Pick<Dataset, "title" | "metadata_modified">;
 
@@ -12,6 +13,7 @@ export default function PopularDatasets({
   datasets: Array<Dataset>;
 }) {
   const { theme } = useTheme();
+  const { t } = useTranslation("common");
   return (
     <div
       className={`bg-white text-black p-8 rounded-lg  h-full ${theme.styles.shadowSm}`}
@@ -21,9 +23,9 @@ export default function PopularDatasets({
           className={`inline-block align-middle w-12 h-0.5 border border-accent`}
         />
         <span className="inline-block font-roboto text-sm text-center pl-2">
-          &nbsp; MOST POPULAR DATASETS
+          &nbsp; {t("popular.label")}
         </span>
-        <h1 className="font-inter font-black text-4xl mt-6">Highlights</h1>
+        <h1 className="font-inter font-black text-4xl mt-6">{t("popular.title")}</h1>
         <div className="flex flex-col">
           {datasets.map((dataset, index) => (
             <Link
@@ -68,10 +70,10 @@ function DatasetLink({ title, metadata_modified }: DatasetLinkProps) {
         Last updated:{" "}
         {metadata_modified
           ? new Intl.DateTimeFormat("en-GB", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }).format(new Date(metadata_modified))
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          }).format(new Date(metadata_modified))
           : ""}
       </span>
     </div>
