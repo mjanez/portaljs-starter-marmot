@@ -45,6 +45,7 @@
         "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.10",
         "clsx": "^2.1.1",
+        "flag-icons": "^7.5.0",
         "i18next": "^25.8.10",
         "minisearch": "^5.0.0",
         "next": "^13.0.0",

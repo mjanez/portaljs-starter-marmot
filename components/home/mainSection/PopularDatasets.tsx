@@ -16,7 +16,7 @@ export default function PopularDatasets({
   const { t } = useTranslation("common");
   return (
     <div
-      className={`bg-white text-black p-8 rounded-lg  h-full ${theme.styles.shadowSm}`}
+      className={`bg-[var(--background-color)] text-[var(--text-base)] p-8 rounded-lg  h-full ${theme.styles.shadowSm}`}
     >
       <div>
         <div

@@ -1,10 +1,70 @@
-.Theme{
-    --accent:#517FB5D9;
-    --dark:#313131;
-    --background-color: white;
-    --text-base: var(--dark);
-    --text-accent:var(--accent);
-    --text-light:white;
-    --input-bg: #E9E9E9;
+.Theme {
+  --accent: theme('colors.accent.500');
+  --dark: #0f172a;
+  --background-color: #0f172a;
+  --text-base: #f1f5f9;
+  --gray-dark: #cbd5e1;
+  --gray: #94a3b8;
+  --text-gray: var(--gray);
+  --text-accent: var(--accent);
+  --text-light: #f1f5f9;
+  --input-bg: #1e293b;
+  --shadow-md: 0px 4px 50px 0px rgba(255, 255, 255, 0.05);
+  --shadow-md-hover: 0px 4px 20px 0px rgba(255, 255, 255, 0.1);
+  --shadow-sm: 0px 4px 30px 0px rgba(255, 255, 255, 0.05);
+  --shadow-sm-hover: 0px 4px 15px 0px rgba(255, 255, 255, 0.1);
+  --footer-bg: #1e293b;
+  --menu-button-bg: #1e293b;
+  --card-bg: #1e293b;
+  --card-hover-bg: #334155;
+
+  /* background-color: var(--background-color); Remove to allow particles to show */
+  color: var(--text-base);
 }
-  
+
+.containerWide {
+  width: min(1400px, 95%);
+}
+
+.shadowSm {
+  transition: all .3s;
+  box-shadow: var(--shadow-sm);
+  background-color: #1e293b;
+
+  &:hover {
+    box-shadow: var(--shadow-sm-hover)
+  }
+}
+
+.shadowMd {
+  transition: all .3s;
+  box-shadow: var(--shadow-md);
+  background-color: #1e293b;
+
+  &:hover {
+    box-shadow: var(--shadow-md-hover)
+  }
+}
+
+.inputBg {
+  background-color: var(--input-bg);
+  color: var(--text-base);
+  border: 1px solid #334155;
+}
+
+.textLight {
+  color: var(--text-light);
+}
+
+.textBase {
+  color: var(--text-base)
+}
+
+.bgDark {
+  transition: background-color .35s;
+  background-color: #334155;
+
+  &:hover {
+    background-color: #475569;
+  }
+}

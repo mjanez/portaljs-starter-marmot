@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import LanguageSelector from "@/components/_shared/LanguageSelector";
+import ThemeSelector from "@/components/_shared/ThemeSelector";
 
 export default function LighterThemeHeader() {
   const router = useRouter();
@@ -69,14 +70,16 @@ export default function LighterThemeHeader() {
             </div>
           </div>
         </div>
-        <div className="hidden lg:flex items-center">
+        <div className="hidden lg:flex items-center gap-2">
+          <ThemeSelector />
           <LanguageSelector />
         </div>
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
+          <ThemeSelector />
           <LanguageSelector />
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 bg-white"
+            className="inline-flex items-center justify-center rounded-md p-2.5 text-[var(--text-base)] bg-[var(--menu-button-bg)]"
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">{t("nav.openMainMenu")}</span>

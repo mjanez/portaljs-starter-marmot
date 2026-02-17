@@ -44,9 +44,9 @@ export default function TermPage({ term }: any) {
                         <TermsNavCrumbs term={term} />
                         <HeroSection title={term?.displayName ?? term?.name} />
                     </div>
-                    <div className="custom-container bg-white space-y-5 rounded shadow-lg p-4">
+                    <div className="custom-container bg-[var(--card-bg)] space-y-5 rounded shadow-lg p-4">
                         <div dangerouslySetInnerHTML={{ __html: term?.description || term?.definition }}></div>
-                        <div className="flex gap-4 text-sm text-muted-foreground">
+                        <div className="flex gap-4 text-sm text-[var(--gray)]">
                             <div className="flex items-center">
                                 <LinkIcon className="mr-1 h-4 w-4" />
                                 Related terms:{" "}
@@ -60,7 +60,7 @@ export default function TermPage({ term }: any) {
                             </div>
                         </div>
                         <div>
-                            <p className="text-sm font-semibold text-muted-foreground">
+                            <p className="text-sm font-semibold text-[var(--gray)]">
                                 {t("glossary.terms")}
                             </p>
                             {/* Pass the ID so the list can fetch children */}

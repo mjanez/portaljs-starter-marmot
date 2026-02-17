@@ -25,10 +25,10 @@ export default function Page({ glossaries }) {
             <div className="grid grid-rows-searchpage-hero">
                 <HeroSection title={t("glossary.title")} />
                 <section className={`grid row-start-3 row-span-2 col-span-full pt-4 `}>
-                    <div className={`custom-container bg-white ${styles.shadowMd}`}></div>
+                    <div className={`custom-container bg-[var(--background-color)] ${styles.shadowMd}`}></div>
                 </section>
             </div>
-            <div className="custom-container bg-white">
+            <div className="custom-container bg-[var(--background-color)]">
                 <article className="pt-[30px] pb-[30px]">
                     {glossaries.map((g) => {
                         return (
@@ -37,7 +37,7 @@ export default function Page({ glossaries }) {
                                     {({ open }) => {
                                         return (
                                             <>
-                                                <Disclosure.Button className="flex w-full justify-between px-4 py-2 shadow-lg rounded">
+                                                <Disclosure.Button className="flex w-full justify-between px-4 py-2 shadow-lg rounded bg-[var(--card-bg)]">
                                                     <span>{g.displayName}</span>
                                                     <ChevronUpIcon
                                                         className={`${open ? "rotate-180 transform" : ""
@@ -45,7 +45,7 @@ export default function Page({ glossaries }) {
                                                     />
                                                 </Disclosure.Button>
                                                 <Disclosure.Panel
-                                                    className={"px-4 py-8 space-y-5 shadow-lg rounded"}
+                                                    className={"px-4 py-8 space-y-5 shadow-lg rounded bg-[var(--card-bg)]"}
                                                 >
                                                     {g.description && (
                                                         <p

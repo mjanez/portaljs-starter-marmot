@@ -108,7 +108,7 @@ const LighterThemeFooter: React.FC = () => {
   };
 
   return (
-    <footer className="bg-accent-50  mt-[155px]">
+    <footer className="bg-[var(--footer-bg)]  mt-[155px]">
       <div
         className={`custom-container flex flex-col flex-wrap py-10 mx-auto md:items-center lg:items-start md:flex-row md:flex-nowrap`}
       >

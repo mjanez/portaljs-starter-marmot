@@ -33,26 +33,26 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   return (
     <div className="relative" ref={dropdownRef}>
-      <div className="flex items-center gap-3 bg-white md:pl-4 rounded-lg">
-        <h2 className="text-[#313131] text-[14px] font-normal leading-normal">
+      <div className="flex items-center gap-3 bg-transparent md:pl-4 rounded-lg">
+        <h2 className="text-[var(--text-base)] text-[14px] font-normal leading-normal">
           Sort by:
         </h2>
         <div
-          className="flex gap-2 bg-[#FFFFFF] shadow-lg bg-opacity-80 min-w-[100px] px-4 h-[40px] items-center justify-center rounded-xl cursor-pointer"
+          className="flex gap-2 bg-[var(--card-bg)] shadow-lg bg-opacity-80 min-w-[100px] px-4 h-[40px] items-center justify-center rounded-xl cursor-pointer"
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
-          <h2 className="text-[14px] text-[#313131] leading-normal font-normal select-none">
+          <h2 className="text-[14px] text-[var(--text-base)] leading-normal font-normal select-none">
             {defaultOption}
           </h2>
           <RiArrowDropDownLine size={25} />
         </div>
       </div>
       {isDropdownOpen && (
-        <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-lg z-10 select-none">
+        <div className="absolute top-full left-0 w-full bg-[var(--card-bg)] shadow-md rounded-lg z-10 select-none">
           {options.map((option, index) => (
             <div
               key={index}
-              className="px-4 py-2 cursor-pointer hover:bg-gray-200"
+              className="px-4 py-2 cursor-pointer hover:bg-[var(--card-hover-bg)]"
               onClick={() => {
                 onSelect(option);
                 setIsDropdownOpen(false);

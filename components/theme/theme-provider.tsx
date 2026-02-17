@@ -11,6 +11,7 @@ const themes: Record<string, Theme> = {
 
 interface ThemeContextProps {
   theme: Theme;
+  currentTheme: string;
   setTheme: (themeName: string) => void;
 }
 
@@ -20,23 +21,23 @@ const ThemeProvider: FC<{ children: ReactNode; themeName?: string }> = ({
   children,
   themeName = "default",
 }) => {
-  const [theme, setTheme] = useState<Theme>(
-    themes[themeName] || themes.default
-  );
+  const [currentTheme, setCurrentTheme] = useState<string>(themeName);
 
-  const switchTheme = (themeName: string) => {
-    setTheme(themes[themeName] || themes.default);
+  const switchTheme = (name: string) => {
+    setCurrentTheme(name);
   };
 
-  const themeDefinition = themes[themeName] || themes.default;
-  const ThemeBase = themeDefinition.layout || _ThemeBase;
+  const theme = themes[currentTheme] || themes.default;
+  const ThemeBase = theme.layout || _ThemeBase;
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme: switchTheme }}>
+    <ThemeContext.Provider
+      value={{ theme, currentTheme, setTheme: switchTheme }}
+    >
       <ThemeBase
-        Header={themeDefinition?.header}
-        Sidebar={themeDefinition?.sidebar}
-        Footer={themeDefinition?.footer}
+        Header={theme?.header}
+        Sidebar={theme?.sidebar}
+        Footer={theme?.footer}
       >
         {children}
       </ThemeBase>

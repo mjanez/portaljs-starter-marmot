@@ -20,7 +20,7 @@ export default function SearchHero({
           className="bg-cover bg-center bg-no-repeat  pt-[60px] pb-[36px] flex flex-col"
           style={{}}
         >
-          <div className="grid md:grid-cols-2 mx-auto items-center grow mx-auto custom-container bg-white">
+          <div className="grid md:grid-cols-2 mx-auto items-center grow mx-auto custom-container bg-[var(--background-color)]">
             <div className="col-span-1">
               <h1 className="text-[55px] font-black ">{title}</h1>
             </div>
@@ -28,13 +28,13 @@ export default function SearchHero({
         </div>
       </section>
       <section className={`grid row-start-3 row-span-2 col-span-full pt-4 `}>
-        <div className={`custom-container bg-white ${styles.shadowMd}`}>
+        <div className={`custom-container bg-[var(--background-color)] ${styles.shadowMd}`}>
           <div className="">
-            <form className="min-h-[70px] flex flex-col lg:flex-row bg-white pr-5 py-3 rounded-xl">
+            <form className="min-h-[70px] flex flex-col lg:flex-row bg-[var(--card-bg)] pr-5 py-3 rounded-xl">
               <input
                 type="text"
                 placeholder={`Search for ${title}`}
-                className="mx-4 grow py-3 border-0 placeholder:text-neutral-400 outline-0"
+                className="mx-4 grow py-3 border-0 placeholder:text-neutral-400 outline-0 bg-transparent text-[var(--text-base)]"
                 id="search2"
                 name="search"
                 onChange={(e) => {
