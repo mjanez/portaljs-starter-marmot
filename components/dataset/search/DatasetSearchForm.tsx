@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import { useTheme } from "@/components/theme/theme-provider";
 import { useSearchState } from "./SearchContext";
 
@@ -16,11 +16,11 @@ export default function DatasetSearchForm() {
 
   return (
     <form className="" onSubmit={handleSubmit}>
-      <div className="min-h-[70px] flex flex-col lg:flex-row bg-white pr-5 py-3 rounded-xl">
+      <div className="min-h-[70px] flex flex-col lg:flex-row bg-transparent pr-5 py-3 rounded-xl">
         <input
           type="text"
           placeholder="Type in keyword..."
-          className="mx-4 grow py-3 border-0 placeholder:text-neutral-400 outline-0"
+          className="mx-4 grow py-3 border-0 placeholder:text-neutral-400 outline-0 bg-transparent text-[var(--text-base)]"
           name="query"
           value={q}
           onChange={(e) => setQ(e.target.value)}

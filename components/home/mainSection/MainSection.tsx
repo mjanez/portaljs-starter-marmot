@@ -22,7 +22,7 @@ export default function MainSection({
   datasets: Array<Dataset>;
 }) {
   return (
-    <section className="custom-container homepage-padding bg-white">
+    <section className="custom-container homepage-padding bg-[var(--background-color)]">
       <div className="flex flex-col md:flex-row md:items-start gap-8 mb-[100px]">
         {[
           {

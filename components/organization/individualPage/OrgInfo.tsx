@@ -4,7 +4,12 @@ import { Tag } from "ckan";
 import { Organization } from "ckan";
 import { getTimeAgo } from "@/lib/utils";
 
+import { useTheme } from "../../theme/theme-provider";
+
 export default function OrgInfo({ org }: { org: Organization }) {
+  const { currentTheme } = useTheme();
+  const isDark = currentTheme === "default";
+
   const url = org.image_display_url
     ? new URL(org.image_display_url)
     : undefined;
@@ -13,6 +18,7 @@ export default function OrgInfo({ org }: { org: Organization }) {
     <div className="flex flex-col">
       <div>
         <Image
+          className={isDark ? "invert" : ""}
           width={120}
           height={120}
           src={
@@ -26,7 +32,7 @@ export default function OrgInfo({ org }: { org: Organization }) {
         />
       </div>
       <div className="flex flex-col gap-y-3 mt-8">
-        <span className="font-medium text-gray-500 inline">
+        <span className="font-medium text-[var(--gray)] inline">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -43,7 +49,7 @@ export default function OrgInfo({ org }: { org: Organization }) {
           </svg>
           Packages: {org.packages ? org.packages.length : 0}
         </span>
-        {org.created && <span className="font-medium text-gray-500 inline">
+        {org.created && <span className="font-medium text-[var(--gray)] inline">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -62,7 +68,7 @@ export default function OrgInfo({ org }: { org: Organization }) {
         </span>}
       </div>
       <div className="py-4 my-4 border-y">
-        <p className="text-sm font-normal text-stone-500 line-clamp-4">
+        <p className="text-sm font-normal text-[var(--gray)] line-clamp-4">
           {org.description?.replace(/<\/?[^>]+(>|$)/g, "") || "No description"}
         </p>
       </div>

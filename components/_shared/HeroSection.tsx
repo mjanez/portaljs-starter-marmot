@@ -10,7 +10,7 @@ export default function HeroSection({
         style={{}}
       >
         <div
-          className={`grid md:grid-cols-${cols} mx-auto items-center grow mx-auto custom-container bg-white`}
+          className={`grid md:grid-cols-${cols} mx-auto items-center grow mx-auto custom-container bg-[var(--background-color)]`}
         >
           <div className="col-span-1">
             <h1 className="text-[24px] md:text-[50px] font-black lg:max-w-[80%]">

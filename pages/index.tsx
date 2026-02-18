@@ -4,8 +4,9 @@ import { searchAssets } from "@/lib/queries/assets";
 import { getAllProviders } from "@/lib/queries/providers";
 import HeroSectionLight from "@/components/home/heroSectionLight";
 import { HomePageStructuredData } from "@/components/schema/HomePageStructuredData";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context: any) {
     const datasets = await searchAssets({
         offset: 0,
         limit: 5,
@@ -21,6 +22,7 @@ export async function getServerSideProps() {
     };
     return {
         props: {
+            ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
             datasets: datasets.datasets,
             orgs,
             stats,

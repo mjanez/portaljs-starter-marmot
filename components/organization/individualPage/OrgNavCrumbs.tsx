@@ -8,7 +8,7 @@ export default function OrgNavCrumbs({
 }) {
   return (
     <nav>
-      <ul className="flex gap-x-8 mx-auto custom-container bg-white">
+      <ul className="flex gap-x-8 mx-auto custom-container bg-[var(--background-color)]">
         <li className="flex gap-x-2 align-center flex-col sm:flex-row">
           <Link
             href="/"

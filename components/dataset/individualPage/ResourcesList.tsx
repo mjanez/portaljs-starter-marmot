@@ -22,11 +22,11 @@ export default function ResourcesList({
         >
           <article className="grid grid-cols-1 sm:grid-cols-6 gap-x-2 grow ">
             <div className="col-span-5 place-content-start flex flex-col gap-0">
-              <h4 className=" md:m-0 font-semibold text-lg text-zinc-900 leading-tight line-clamp-3 pr-5">
+              <h4 className=" md:m-0 font-semibold text-lg text-[var(--text-base)] leading-tight line-clamp-3 pr-5">
                 {resource.name || "No title"}
               </h4>
-              <p className="text-sm font-normal text-stone-500 line-clamp-4">
-                {resource.description ? <span dangerouslySetInnerHTML={{__html: resource.description}} /> : "No description"}
+              <p className="text-sm font-normal text-[var(--gray)] line-clamp-4">
+                {resource.description ? <span dangerouslySetInnerHTML={{ __html: resource.description }} /> : "No description"}
               </p>
               <div className="mt-2">
                 <ResourcesBadges resources={[resource]} />
@@ -38,14 +38,14 @@ export default function ResourcesList({
               resource.format.toLowerCase()
             ) ||
               resource?.iframe) && (
-              <Link
-                href={`/@${orgName}/${datasetName}/r/${resource.id}`}
-                className="px-2 py-1 border  h-fit shadow hover:shadow-lg transition-all text-sm  text-center text-dark rounded font-roboto font-bold border-accent-50 hover:border-accent-100 hover:bg-accent-100  duration-150 flex items-center justify-center gap-1"
-              >
-                <RiEyeLine />
-                <span>Preview</span>
-              </Link>
-            )}
+                <Link
+                  href={`/@${orgName}/${datasetName}/r/${resource.id}`}
+                  className="px-2 py-1 border  h-fit shadow hover:shadow-lg transition-all text-sm  text-center text-[var(--text-base)] hover:text-black rounded font-roboto font-bold border-accent-50 hover:border-accent-100 hover:bg-accent-100  duration-150 flex items-center justify-center gap-1"
+                >
+                  <RiEyeLine />
+                  <span>Preview</span>
+                </Link>
+              )}
             {resource.url && (
               <Link
                 href={resource.url}
